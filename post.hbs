@@ -56,18 +56,16 @@
                 </div>
             </div>
             {{/if}}
-
-            {{#has tag="#import-xelif, #import-hugo"}}
-                {{> "feature-image"}}
-            {{/has}}
-
         </header>
 
         <section class="gh-content gh-canvas is-body{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">
+            {{#has tag="#Show feature image,#import-hugo,#import-xelif"}}
+                {{> "feature-image"}}
+            {{/has}}
             {{content}}
         </section>
 
-        {{^has tag="#import-xelif, #import-hugo"}}
+        {{^has tag="#Show feature image,#import-hugo,#import-xelif"}}
             {{#if feature_image_caption}}
                 <footer class="gh-article-footer gh-canvas">
                     <p>Feature image: {{feature_image_caption}}</p>
