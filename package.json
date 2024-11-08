@@ -42,20 +42,20 @@
     "contributors": "https://github.com/TryGhost/Source/graphs/contributors",
     "devDependencies": {
         "@tryghost/release-utils": "0.8.1",
-        "autoprefixer": "10.4.7",
+        "autoprefixer": "10.4.20",
         "beeper": "2.1.0",
-        "cssnano": "5.1.12",
-        "gscan": "4.43.1",
-        "gulp": "4.0.2",
+        "cssnano": "5.1.15",
+        "gscan": "4.45.0",
+        "gulp": "5.0.0",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
         "gulp-postcss": "9.0.1",
         "gulp-uglify": "3.0.2",
         "gulp-zip": "5.1.0",
         "inquirer": "8.2.4",
-        "postcss": "8.2.13",
+        "postcss": "8.4.47",
         "postcss-easy-import": "4.0.0",
-        "pump": "3.0.0"
+        "pump": "3.0.2"
     },
     "browserslist": [
         "defaults"
@@ -202,5 +202,6 @@
             "@tryghost:theme"
         ]
     },
-    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+    "dependencies": {}
 }
