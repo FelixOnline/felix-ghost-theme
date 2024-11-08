@@ -185,6 +185,11 @@
                 "default": false,
                 "group": "post"
             },
+            "show_edit_article_link": {
+                "type": "boolean",
+                "default": false,
+                "group": "post"
+            },
             "show_related_articles": {
                 "type": "boolean",
                 "default": true,

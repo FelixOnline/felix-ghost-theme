@@ -77,6 +77,12 @@
 
     </article>
 
+    {{#if @custom.show_edit_article_link}}
+        <div class="gh-comments gh-canvas">
+            <a href="/ghost/#/editor/post/{{id}}/">Edit this article</a>
+        </div>
+    {{/if}}
+
     {{#if comments}}
         <div class="gh-comments gh-canvas">
             {{comments}}
