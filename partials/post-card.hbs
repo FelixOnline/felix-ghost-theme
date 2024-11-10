@@ -42,13 +42,13 @@
                 {{#if @custom.show_author}}
                     {{^has author="felix,anonymous"}}
                         <span class="gh-card-author">By {{#foreach authors}}{{#if @first}}<span class="gh-card-author-name">{{name}}</span>{{else}}{{#if @last}} and <span class="gh-card-author-name">{{name}}</span>{{else}}, <span class="gh-card-author-name">{{name}}</span>{{/if}}{{/if}}{{/foreach}}</span>
-                    {{else}}
-                        <span><time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time></span>
                     {{/has}}
                 {{/if}}
+
                 {{#if @custom.show_publish_date}}
-                    <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+                    <span class="gh-card-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{> "icons/calendar"}}{{date timeago="true"}}</time></span>
                 {{/if}}
+
                 {{#if reading_time}}
                     <span class="gh-article-meta-length">{{> "icons/clock"}}{{reading_time}}</span>
                 {{/if}}
