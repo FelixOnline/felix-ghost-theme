@@ -2532,11 +2532,10 @@ blockquote strong {
 
 .kg-bookmark-author,
 .kg-bookmark-publisher {
-    font-family: acumin-pro, sans-serif;
+    font-family: var(--font-sans), sans-serif;
 }
 
 .kg-bookmark-card .kg-bookmark-metadata {
-    font-size: 0.8em;
     margin-top: 1rem;
 }
 
