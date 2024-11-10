@@ -41,7 +41,7 @@
                 {{/unless}}
                 {{#if @custom.show_author}}
                     {{^has author="felix,anonymous"}}
-                        <span class="gh-card-author">By {{#foreach authors}}{{#if @first}}{{name}}{{else}}, {{name}}{{/if}}{{/foreach}}</span>
+                        <span class="gh-card-author">By {{#foreach authors}}{{#if @first}}<span class="gh-card-author-name">{{name}}</span>{{else}}{{#if @last}} and <span class="gh-card-author-name">{{name}}</span>{{else}}, <span class="gh-card-author-name">{{name}}</span>{{/if}}{{/if}}{{/foreach}}</span>
                     {{else}}
                         <span><time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time></span>
                     {{/has}}
@@ -50,7 +50,7 @@
                     <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
                 {{/if}}
                 {{#if reading_time}}
-                    <span class="gh-article-meta-length">{{reading_time}}</span>
+                    <span class="gh-article-meta-length">{{> "icons/clock"}}{{reading_time}}</span>
                 {{/if}}
             </footer>
         </div>

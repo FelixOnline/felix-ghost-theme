@@ -975,6 +975,9 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     align-items: center;
     padding-bottom: 1px;
     font-size: 1.25rem;
@@ -983,26 +986,23 @@ Search                         LOGO                    Login Subscribe
     color: var(--color-secondary-text);
 }
 
-.gh-card-meta span:not(:last-of-type)::after {
-    content: " \2014 ";
+.gh-card-author-name {
+    color: var(--color-dark-gray);
+    white-space: nowrap;
 }
 
 .gh-card-meta svg {
     position: relative;
-    top: 1px;
     display: inline-block;
     width: 12px;
     height: 12px;
-    margin-right: 2px;
+    margin-right: 4px;
+    bottom: 1.2px;
+    vertical-align: middle;
 }
 
 .gh-card-meta:not(:empty) {
     margin-top: 8px;
-}
-
-.gh-card-author + .gh-card-date::before {
-    content: "—";
-    margin-right: 4px;
 }
 
 /* 8. Header
