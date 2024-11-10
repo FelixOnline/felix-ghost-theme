@@ -2234,20 +2234,27 @@ unless a heading is the very first element in the post content */
 
 .gh-content a {
     text-decoration: underline;
-    text-decoration-color: var(--section-color, #2e45b8);
+    text-decoration-color: #2e45b8;
     text-decoration-thickness: 0.125rem;
     text-underline-offset: 0.125rem;
 }
 
 .gh-content a:hover {
-    color: color-mix(in srgb, black 30%, var(--section-color, #2e45b8));
-    text-decoration: underline;
+    color: #1f2e7a;
     text-decoration-thickness: 0.0625rem;
 }
 
+.gh-content a:is(:focus, :active) {
+    background-color: #ebedfa;
+    color: #0d0d0d;
+}
+
 .gh-content a:focus {
-    background-color: color-mix(in srgb, var(--section-color) 5%, white);
     outline: none;
+}
+
+.gh-content a:active {
+    text-decoration: none;
 }
 
 .gh-content .kg-callout-card .kg-callout-text,
