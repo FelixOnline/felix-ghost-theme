@@ -60,6 +60,8 @@ production stylesheet in assets/built/screen.css
     --color-black: #000;
     --color-primary-text: var(--color-darker-gray);
     --color-secondary-text: rgb(0 0 0 / 0.55);
+    --color-link-text: #2e45b8;
+    --color-link-text-hover: #1f2e7a;
     --color-border: rgb(0 0 0 / 0.08);
     --color-dark-border: rgb(0 0 0 / 0.55);
     --font-sans: "Inter", sans-serif;
@@ -1998,14 +2000,6 @@ Search                         LOGO                    Login Subscribe
     margin: clamp(40px, 3.64vw + 25.45px, 72px) 0 40px;
 }
 
-.gh-article-issue {
-    font-size: 1.3rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: var(--color-secondary-text);
-}
-
 .gh-article-section {
     width: fit-content;
     margin-bottom: 24px;
@@ -2243,19 +2237,19 @@ unless a heading is the very first element in the post content */
 
 .gh-content a {
     text-decoration: underline;
-    text-decoration-color: #2e45b8;
+    text-decoration-color: var(--color-link-text);
     text-decoration-thickness: 0.125rem;
     text-underline-offset: 0.125rem;
 }
 
 .gh-content a:hover {
-    color: #1f2e7a;
+    color: var(--color-link-text-hover);
     text-decoration-thickness: 0.0625rem;
 }
 
 .gh-content a:is(:focus, :active) {
     background-color: #ebedfa;
-    color: #0d0d0d;
+    color: var(--color-primary-text);
 }
 
 .gh-content a:focus {
@@ -2609,6 +2603,54 @@ figcaption b, figcaption strong {
     text-decoration: none;
 }
 
+/* Issue information */
+.gh-issue {
+    column-gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 48px;
+    justify-content: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: 48px;
+}
+
+.gh-issue.no-front-cover {
+    justify-content: start;
+}
+
+.gh-issue figure {
+    border-radius: 0.125rem;
+    box-shadow: rgba(0, 0, 0, 0.4) -0.125rem 0.125rem 0.25rem 0px;
+    width: 12rem;
+}
+
+.gh-issue-description {
+    display: flex;
+    gap: .3em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.gh-issue-description svg {
+    display: inline;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    color: var(--ghost-accent-color);
+    margin-right: 4px;
+    margin-bottom: 0.2em;
+}
+
+.gh-issue-description a {
+    font-weight: 550;
+}
+
+.gh-issue-description a:hover {
+    color: var(--color-link-text-hover);
+    text-decoration: underline;
+}
+
 /* 17. Comments
 /* ---------------------------------------------------------- */
 
@@ -2643,6 +2685,7 @@ figcaption b, figcaption strong {
     grid-template-columns: repeat(16, 1fr);
     gap: var(--grid-gap);
     margin-block: 80px 24px;
+    font-family: var(--font-serif-alt), serif;
 }
 
 .gh-archive.has-image {
@@ -2658,6 +2701,11 @@ figcaption b, figcaption strong {
     border-bottom: 1px solid var(--color-border);
 }
 
+.gh-archive-wrapper {
+    display: grid;
+    gap: 0.5em;
+}
+
 .gh-archive.has-image .gh-archive-inner {
     align-items: center;
     grid-column: 1 / -1;
@@ -2670,10 +2718,6 @@ figcaption b, figcaption strong {
 .gh-archive .gh-article-image {
     grid-column: auto;
     margin-top: 0;
-}
-
-.gh-archive :is(.gh-article-excerpt) {
-    font-family: var(--font-serif-alt);
 }
 
 :is(.tag-template, .author-template) .gh-container {
@@ -2870,12 +2914,8 @@ figcaption b, figcaption strong {
 }
 
 .gh-archive :is(.is-title) {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif), serif;
     color: var(--section-color);
-}
-
-.gh-archive :is(.gh-article-excerpt) {
-    font-family: var(--font-serif-alt);
 }
 
 /* 21. Footer

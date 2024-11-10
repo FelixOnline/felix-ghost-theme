@@ -19,9 +19,6 @@
 
         <header class="gh-article-header gh-canvas">
 
-            {{#foreach tags from="2"}}
-                <a class="gh-article-issue" href="{{url}}">{{name}}</a>
-            {{/foreach}}
             {{#if primary_tag}}
                 {{#primary_tag}}
                     <a class="gh-article-section{{#match slug "=" "catnip"}} rainbow-text{{/match}}" href="{{url}}"{{#if accent_color}} style="color: {{accent_color}}"{{/if}}>{{name}}</a>
@@ -74,6 +71,30 @@
         {{/has}}
 
     </article>
+
+    <!-- Iterate over each tag, check if the tag has a slug starting with "issue-", output its details -->
+    {{#foreach tags}}
+        {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
+            {{#issue}}
+                <div class="gh-canvas">
+                    <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}">
+                        {{> "feature-image"}}
+                        <div class="gh-issue-description">
+                            <h3>From <span class="gh-issue-name">{{name}}</span></h3>
+                            <!-- Since the date the tag was created is unreliable, instead get the oldest post with this tag. -->
+                            {{#get "posts" filter="tag:{{slug}}" order="published_at asc" limit="1" as |oldest_post|}}
+                                {{#oldest_post}}
+                                    <em><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="Do MMMM YYYY"}}</time></em>
+                                {{/oldest_post}}
+                            {{/get}}
+                            <p>Discover stories from this section and more in the list of contents</p>
+                            <a class="link-with-arrow-icon" href="{{url}}">{{> "icons/arrow"}}<span>Explore the edition</span></a>
+                        </div>
+                    </div>
+                </div>
+            {{/issue}}
+        {{/get}}
+    {{/foreach}}
 
     {{#if @custom.show_edit_article_link}}
         <div class="gh-comments gh-canvas">
