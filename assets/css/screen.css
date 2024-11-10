@@ -1372,6 +1372,12 @@ Search                         LOGO                    Login Subscribe
     }
 }
 
+@media (min-width: 1200px) {
+    .gh-header.is-highlight .gh-featured-feed .gh-card:nth-child(6) {
+        display: none;
+    }
+}
+
 /* 8.3. Classic layout */
 
 .gh-header.is-classic {
@@ -1491,10 +1497,10 @@ Search                         LOGO                    Login Subscribe
 .gh-featured-title {
     margin-bottom: 20px;
     padding-bottom: 12px;
-    font-size: 1.2rem;
-    font-weight: 550;
-    letter-spacing: 0.025em;
-    text-transform: uppercase;
+    font-size: 1.9rem;
+    font-weight: 800;
+    font-family: var(--font-serif), serif;
+    color: var(--color-darker-gray);
     border-bottom: 1px solid var(--color-border);
 }
 
