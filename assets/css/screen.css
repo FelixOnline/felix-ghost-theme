@@ -2942,9 +2942,26 @@ figcaption b, figcaption strong {
     list-style-type: none;
 }
 
-.gh-footer-copyright {
+.gh-footer-publication-info {
+    display: grid;
     text-align: right;
+    gap: 0.5rem;
+}
+
+.gh-footer-copyright {
     white-space: nowrap;
+}
+
+.gh-footer-issn {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 991px) {
+    .gh-footer-publication-info {
+        color: var(--color-dark-gray);
+        text-align: center;
+        white-space: normal;
+    }
 }
 
 .gh-footer-copyright a {

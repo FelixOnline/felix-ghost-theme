@@ -12,7 +12,10 @@
             <nav class="gh-footer-menu">
                 {{navigation type="secondary"}}
             </nav>
-            <div class="gh-footer-copyright">Copyright 2024 Felix<br>Registered Newspaper ISSN 0140-0711</div>
+            <div class="gh-footer-publication-info">
+                <span class="gh-footer-copyright">Copyright {{date format="YYYY"}} Felix</span>
+                <span class="gh-footer-issn">ISSN 0140-0711</span>
+            </div>
         </div>
 
         {{#if @site.members_enabled}}
