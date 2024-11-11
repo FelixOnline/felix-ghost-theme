@@ -1,6 +1,6 @@
 # Felix
 
-**The Ghost theme for [Felix](https://felixonline.co.uk), Imperial College London's student newspaper since 1949.**
+**The Ghost theme for [Felix](https://felixonline.co.uk), the student newspaper of Imperial College London since 1949.**
 
 ---
 
@@ -8,67 +8,128 @@
 
 ---
 
-This is a fork of Ghost's [Source](https://github.com/TryGhost/Source) theme, styled in line with Felix brand guidelines.
-
-## First time using a Ghost theme?
-
-Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
-
-This theme has lots of code comments to help explain what's going on just by reading the code. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://ghost.org/docs/themes/) which explains every possible Handlebars helper and template.
-
-**The main files are:**
-
-- `default.hbs` - The parent template file, which includes your global header/footer
-- `home.hbs` - The homepage
-- `index.hbs` - The main template to generate a list of posts
-- `post.hbs` - The template used to render individual posts
-- `page.hbs` - Used for individual pages
-- `tag.hbs` - Used for tag archives, eg. "all posts tagged with `news`"
-- `author.hbs` - Used for author archives, eg. "all posts written by Jamie"
-
-One neat trick is that you can also create custom one-off templates by adding the slug of a page to a template file. For example:
-
-- `page-about.hbs` - Custom template for an `/about/` page
-- `tag-news.hbs` - Custom template for `/tag/news/` archive
-- `author-ali.hbs` - Custom template for `/author/ali/` archive
-
+This is a fork of the official Ghost theme [Source](https://github.com/TryGhost/Source),
+styled in line with Felix brand guidelines.
 
 ## Development
 
-Source styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
+### Project setup
+
+Install [Node.js](https://nodejs.org), for example, using [`nvm`](https://github.com/nvm-sh/nvm), like so
+
+```bash
+# installs Node.js v20.11.1
+nvm install 20.11.1
+```
+
+To check that Node is installed correctly, try running `node --version`.
+It should output the version number.
+
+Next, enable the `yarn` package manager by running
+
+```bash
+# install yarn package manager
+corepack enable
+```
+
+Check out the project code using `git` or an IDE.
+Open a terminal in the theme root directory.
+Run the command below to install project dependencies.
 
 ```bash
 # install dependencies
 yarn install
+```
 
+Make sure [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed.
+Start a local Ghost web server and database with the command below.
+
+```bash
+# starts Ghost CMS in a Docker container
+docker compose up
+```
+
+Use `CTRL+C` to stop the Ghost server once you are done.
+
+The first run can take a while to initialise.
+Once Ghost is ready, the site should be ready at [`http://localhost:8080`](http://localhost:8080).
+
+If you encounter permission issues with the `.git` folder, you may need to reset its permissions with
+
+```bash
+chmod -R 777 .git
+```
+
+Go to the Ghost admin panel [`http://localhost:8080/ghost/`](http://localhost:8080/ghost/)
+and create your local administrator account.
+
+### Testing locally
+
+The build process uses [Gulp](https://gulpjs.com/) and [PostCSS](https://postcss.org/)
+to compile the source styles into minified, optimised, and future-proof CSS.
+
+When working locally, the development server can handle theme compilation automatically.
+As soon as it detects changes, it recompiles the necessary theme files.
+To start the development server, run the command below.
+
+```bash
 # run development server
 yarn dev
 ```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+### Deploying to production
 
-The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
+From the root folder of the project, run the command below to package the theme for deployment.
 
 ```bash
 # create .zip file
 yarn zip
 ```
 
-## PostCSS Features Used
+The compiler saves the zip archive into `dist/felix.zip`.
+You can upload this zip file to the [official Felix website](https://felixonline.co.uk).
 
-- Autoprefixer - Don't worry about writing browser prefixes of any kind, it's all done automatically with support for the latest 2 major versions of every browser.
+## Theme project layout
 
+Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
+Take a look at the Ghost [theme API documentation](https://ghost.org/docs/themes/),
+which explains every possible Handlebars helper and template.
 
-## SVG Icons
+**The main files are:**
 
-Source uses inline SVG icons, included via Handlebars partials. You can find all icons inside `/partials/icons`. To use an icon just include the name of the relevant file, eg. To include the SVG icon in `/partials/icons/rss.hbs` - use `{{> "icons/rss"}}`.
+- `default.hbs` - The parent template file, which includes the global header/footer
+- `home.hbs` - The homepage
+- `index.hbs` - The main template to generate a list of posts
+- `post.hbs` - The template used to render individual posts
+- `page.hbs` - Used for individual pages
+- `tag.hbs` - Used for tag archives, e.g. “all posts tagged with `news`”
+- `author.hbs` - Used for author archives, e.g. “all posts written by Jamie”
+
+Adding the _slug_ of a page to a template file creates a custom one-off template. For example:
+
+- `page-about.hbs` - Custom template for an `/about/` page
+- `tag-news.hbs` - Custom template for `/tag/news/` archive
+- `author-ali.hbs` - Custom template for `/author/ali/` archive
+
+## Code standards
+
+### CSS auto-prefixing
+
+Do not worry about writing browser prefixes of any kind,
+it is all done automatically with support for the latest two major versions of every browser.
+
+### SVG Icons
+
+This theme uses inline SVG icons, included via Handlebars partials.
+You can find all icons inside `/partials/icons`.
+To use an icon, include the name of the relevant file.
+For example, to include the SVG icon in `/partials/icons/rss.hbs` use `{{> "icons/rss"}}`.
 
 You can add your own SVG icons in the same manner.
 
+## Copyright & Licence
 
-## Copyright & License
+Released under the [MIT licence](LICENSE).
 
-Released under the [MIT license](LICENSE).
-
-* Copyright (c) 2013-2023 Ghost Foundation
-* Copyright (c) 2024 Felix
+* Copyright © 2013–2023 Ghost Foundation
+* Copyright © 2024 Felix
