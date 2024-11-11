@@ -2475,6 +2475,7 @@ blockquote strong {
     text-align: center;
     font-size: 1em;
     line-height: 1.2em;
+    font-family: var(--font-sans), sans-serif;
 }
 
 /* Header */
@@ -2691,6 +2692,12 @@ figcaption b, figcaption strong {
 
 .gh-archive.has-image {
     margin-top: 48px;
+}
+
+.gh-archive img {
+    border-radius: 0.125rem;
+    box-shadow: rgba(0, 0, 0, 0.4) -0.125rem 0.125rem 0.25rem 0;
+    max-height: 50vh;
 }
 
 .gh-archive-inner {
