@@ -1,0 +1,31 @@
+services:
+
+  ghost:
+    image: ghost
+    restart: always
+    ports:
+      - "8080:2368"
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: example
+      database__connection__database: ghost
+      url: http://localhost:8080
+      NODE_ENV: development
+    volumes:
+      - ghost:/var/lib/ghost/content
+      - .:/var/lib/ghost/content/themes/felix
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  ghost:
+  db:
+
