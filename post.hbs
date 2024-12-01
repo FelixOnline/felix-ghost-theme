@@ -121,11 +121,15 @@
     and the other backwards ensures good inter-linking between articles to keep readers interested.
     -->
 
-    <!-- Articles in the same issue point backwards, i.e. only show articles created before them in the same issue. -->
-    {{#get "posts" include="authors"
+    {{#get "posts" include="authors,tags"
            filter="id:-{{post.id}}+tag:[{{post.tags.[1].slug}}]+created_at:<'{{post.created_at}}'"
            limit="4" as |next|}}
         {{#if next}}
+            <!--
+            Articles in the same issue point backwards,
+            i.e. only show articles created before them in the same issue.
+            -->
+            {{#match next.length ">" "2"}}
             <section class="gh-container is-grid gh-outer">
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">More from this issue</h2>
@@ -136,18 +140,20 @@
                     </div>
                 </div>
             </section>
+            {{/match}}
         {{/if}}
     {{/get}}
 
-    <!--
-    Recommendations in the same section exclude those in the same article
-    because recommending the same article twice looks bad.
-    These recommendations look forwards in time.
-    -->
     {{#get "posts" include="authors"
            filter="id:-{{post.id}}+tag:[{{post.primary_tag.slug}}]+tag:-[{{post.tags.[1].slug}}]+created_at:>'{{post.created_at}}'"
-           order="post.created_at ASC" limit="4" as |next|}}
+           limit="4" as |next|}}
         {{#if next}}
+            <!--
+            Recommendations in the same section exclude those in the same article
+            because recommending the same article twice looks bad.
+            These recommendations look forwards in time.
+            -->
+            {{#match next.length ">" "2"}}
             <section class="gh-container is-grid gh-outer">
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">More from this section</h2>
@@ -158,6 +164,7 @@
                     </div>
                 </div>
             </section>
+            {{/match}}
         {{/if}}
     {{/get}}
 {{/if}}
