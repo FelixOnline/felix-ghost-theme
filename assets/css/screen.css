@@ -90,7 +90,7 @@ production stylesheet in assets/built/screen.css
 
 @property --ghost-accent-color {
     syntax: "<color>";
-    inherits: false;
+    inherits: true;
     initial-value: #da2128;
 }
 
@@ -2652,6 +2652,43 @@ figcaption b, figcaption strong {
     color: var(--color-link-text-hover);
     text-decoration: underline;
 }
+
+.arrow-link {
+    position: relative;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.arrow-link::before {
+    content: "\2192";
+    position: absolute;
+    left: -20px;
+    color: var(--ghost-accent-color);
+}
+
+.arrow-link-filled {
+    position: relative;
+    text-decoration: none;
+    margin-left: 24px;
+}
+
+.arrow-link-filled::before {
+    content: "\2192";
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: var(--ghost-accent-color);
+    border-radius: 50%;
+}
+
 
 /* 17. Comments
 /* ---------------------------------------------------------- */
