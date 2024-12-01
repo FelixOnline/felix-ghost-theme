@@ -46,7 +46,9 @@
                 {{/if}}
 
                 {{#if @custom.show_publish_date}}
-                    <span class="gh-card-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{> "icons/calendar"}}{{date timeago="true"}}</time></span>
+                    <span class="gh-card-date">
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{> "icons/calendar"}}{{date}}</time>
+                    </span>
                 {{/if}}
 
                 {{#if reading_time}}
