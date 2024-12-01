@@ -6913,7 +6913,7 @@
   /author/tvfelix/: /film-tv/
   /author/felfood/: /food/
   /author/felix_music/: /music/
-  /author/tecfelix/: /technology/
+  /author/tecfelix/: /tech/
   /author/felart/: /arts/
 
   # Tags remappings
@@ -6972,7 +6972,7 @@
   ^/issuearchive/issue/([0-9]+)/download/$: https://issues.felixonline.co.uk/felix_$1.pdf
 
   # felixonline.co.uk/pdf/issue-1856
-  ^/pdf/issue-([0-9]+)/?$: https://issues.felixonline.co.uk/felix_$1.pdf
+  ^/pdf/issue-0*([0-9]+)/?$: https://issues.felixonline.co.uk/felix_$1.pdf
 
   # felixonline.co.uk/issues/felix_326/
   ^/issues/felix_([0-9]+)/?$: https://issues.felixonline.co.uk/felix_$1.pdf
