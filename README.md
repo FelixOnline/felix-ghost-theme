@@ -18,8 +18,8 @@ styled in line with Felix brand guidelines.
 Install [Node.js](https://nodejs.org), for example, using [`nvm`](https://github.com/nvm-sh/nvm), like so
 
 ```bash
-# installs Node.js v20.11.1
-nvm install 20.11.1
+# installs Node.js v22.14.0 at time of writing
+nvm install --lts
 ```
 
 To check that Node is installed correctly, try running `node --version`.
@@ -41,12 +41,13 @@ Run the command below to install project dependencies.
 yarn install
 ```
 
-Make sure [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed.
+If you don't have Docker on your system, install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
 Start a local Ghost web server and database with the command below.
 
 ```bash
 # starts Ghost CMS in a Docker container
-docker compose up
+docker compose up --pull always --force-recreate --remove-orphans
 ```
 
 Use `CTRL+C` to stop the Ghost server once you are done.
