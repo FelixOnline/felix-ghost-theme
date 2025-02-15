@@ -82,11 +82,15 @@
                         <div class="gh-issue-description">
                             <h3>From <span class="gh-issue-name">{{name}}</span></h3>
                             <!-- Since the date the tag was created is unreliable, instead get the oldest post with this tag. -->
-                            {{#get "posts" filter="tag:{{slug}}" order="published_at asc" limit="1" as |oldest_post|}}
-                                {{#oldest_post}}
+                            {{#if description}}
+                                <em>{{description}}</em>
+                            {{else}}
+                            {{#get "posts" filter="tag:{{slug}}" order="published_at desc" limit="1" as |newest_post|}}
+                                {{#newest_post}}
                                     <em><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="Do MMMM YYYY"}}</time></em>
-                                {{/oldest_post}}
+                                {{/newest_post}}
                             {{/get}}
+                            {{/if}}
                             <p>Discover stories from this section and more in the list of contents</p>
                             <a class="arrow-link-filled" href="{{url}}">Explore the edition</a>
                         </div>
