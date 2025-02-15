@@ -2606,9 +2606,9 @@ figcaption b, figcaption strong {
 
 /* Issue information */
 .gh-issue {
-    column-gap: 2rem;
+    gap: 2rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 48px;
     justify-content: center;
     border-top: 1px solid var(--color-border);
@@ -2623,7 +2623,7 @@ figcaption b, figcaption strong {
     border-radius: 0.125rem;
     box-shadow: rgba(0, 0, 0, 0.4) -0.125rem 0.125rem 0.25rem 0px;
     width: 14rem;
-    min-width: 10rem;
+    min-width: 12rem;
 }
 
 .gh-issue-description {
@@ -2631,7 +2631,22 @@ figcaption b, figcaption strong {
     gap: .3em;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    max-width: 75%;
+}
+
+
+@media (min-width: 512px) {
+    .gh-issue {
+        flex-direction: row;
+    }
+
+    .gh-issue-description {
+        align-items: flex-start;
+        text-align: start;
+    }
 }
 
 .gh-issue-description svg {
