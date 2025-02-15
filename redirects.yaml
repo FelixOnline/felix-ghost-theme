@@ -6942,15 +6942,15 @@
   ^/white_city/(.*)$: /news/$1
   ^/postgraduates/(.*)$: /postgraduate/$1
   ^/brexit/(.*)$: /politics/$1
-  ^/sport/(.*)$: /sport-societies/$1
-  ^/icxcac/(.*)$: /sport-societies/$1
-  ^/lacrosse/(.*)$: /sport-societies/$1
-  ^/american_football/(.*)$: /sport-societies/$1
-  ^/match_report/(.*)$: /sport-societies/$1
-  ^/clubs-and-socs/(.*)$: /sport-societies/$1
-  ^/rugby/(.*)$: /sport-societies/$1
-  ^/windsurfing/(.*)$: /sport-societies/$1
-  ^/water_polo/(.*)$: /sport-societies/$1
+  ^/sport-societies/(.*)$: /societies/$1
+  ^/icxcac/(.*)$: /sport/$1
+  ^/lacrosse/(.*)$: /sport/$1
+  ^/american_football/(.*)$: /sport/$1
+  ^/match_report/(.*)$: /sport/$1
+  ^/clubs-and-socs/(.*)$: /societies/$1
+  ^/rugby/(.*)$: /sport/$1
+  ^/windsurfing/(.*)$: /sport/$1
+  ^/water_polo/(.*)$: /sport/$1
   ^/investment/(.*)$: /business/$1
   ^/hangman/(.*)$: /catnip/$1
   ^/millennials/(.*)$: /sex/$1
