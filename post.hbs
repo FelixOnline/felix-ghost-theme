@@ -29,7 +29,7 @@
                 <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
             {{/if}}
 
-            {{#if @custom.show_post_metadata}}
+            {{^has author="felix,anonymous"}}
             <div class="gh-article-meta">
                 <div class="gh-article-author-image instapaper_ignore">
                     {{#foreach authors}}
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            {{/if}}
+            {{/has}}
         </header>
 
         <section class="gh-content gh-canvas is-body{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">

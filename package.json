@@ -175,11 +175,6 @@
                 "default": false,
                 "group": "homepage"
             },
-            "show_post_metadata": {
-                "type": "boolean",
-                "default": true,
-                "group": "post"
-            },
             "enable_drop_caps_on_posts": {
                 "type": "boolean",
                 "default": false,
