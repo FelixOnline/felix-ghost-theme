@@ -17,6 +17,7 @@
 
     <article class="gh-article {{post_class}}">
 
+        {{^has tag="#Hide article header"}}
         <header class="gh-article-header gh-canvas">
 
             {{#if primary_tag}}
@@ -54,6 +55,7 @@
             </div>
             {{/has}}
         </header>
+        {{/has}}
 
         <section class="gh-content gh-canvas is-body{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">
             {{#has tag="#Show feature image,#import-hugo,#import-xelif"}}
