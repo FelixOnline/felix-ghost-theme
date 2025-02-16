@@ -72,34 +72,6 @@
 
     </article>
 
-    <!-- Iterate over each tag, check if the tag has a slug starting with "issue-", output its details -->
-    {{#foreach tags}}
-        {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
-            {{#issue}}
-                <div class="gh-canvas">
-                    <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}">
-                        {{> "feature-image"}}
-                        <div class="gh-issue-description">
-                            <h3>From <span class="gh-issue-name">{{name}}</span></h3>
-                            <!-- Since the date the tag was created is unreliable, instead get the oldest post with this tag. -->
-                            {{#if description}}
-                                <em>{{description}}</em>
-                            {{else}}
-                            {{#get "posts" filter="tag:{{slug}}" order="published_at desc" limit="1" as |newest_post|}}
-                                {{#newest_post}}
-                                    <em><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="Do MMMM YYYY"}}</time></em>
-                                {{/newest_post}}
-                            {{/get}}
-                            {{/if}}
-                            <p>Discover stories from this section and more in the list of contents</p>
-                            <a class="arrow-link-filled" href="{{url}}">Explore the edition</a>
-                        </div>
-                    </div>
-                </div>
-            {{/issue}}
-        {{/get}}
-    {{/foreach}}
-
     {{#if @custom.show_edit_article_link}}
         <div class="gh-comments gh-canvas">
             <a href="/ghost/#/editor/post/{{id}}/">Edit this article</a>
@@ -116,59 +88,76 @@
 
 {{/post}}
 
+{{#get "posts" order="published_at desc" include="tags"
+       filter="id:-{{post.id}}+tag:[{{post.tags.[0].slug}}]+tag:[{{post.tags.[1].slug}}]"}}
+    {{#match posts.length ">" "1"}}
+        <div class="gh-canvas">
+            <div class="gh-chapter-list">
+                <div class="gh-chapter-list-heading">
+                    <h2><a href="{{posts.[0].tags.[0].url}}">{{posts.[0].tags.[0].name}}</a></h2>
+                    <p>{{posts.[0].tags.[1].name}}</p>
+                </div>
+                <ul>
+                    {{#foreach posts}}
+                        <li class="chapter-list-item">
+                            <a class="arrow-link"
+                               href="{{url}}">{{title}} {{post.slug}}</a>
+                        </li>
+                    {{/foreach}}
+                </ul>
+            </div>
+        </div>
+    {{/match}}
+{{/get}}
+
+{{!-- Iterate over each tag, check if the tag has a slug starting with "issue-", output its details --}}
+{{#foreach post.tags}}
+    {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
+        {{#issue}}
+            <div class="gh-canvas">
+                <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}">
+                    {{> "feature-image"}}
+                    <div class="gh-issue-description">
+                        <h3>From <span class="gh-issue-name">{{name}}</span></h3>
+                        {{!-- Since the date the tag was created is unreliable, instead get the oldest post with this tag. --}}
+                        {{#if description}}
+                            <em>{{description}}</em>
+                        {{else}}
+                            {{#get "posts" filter="tag:{{slug}}" order="published_at desc" limit="1" as |newest_post|}}
+                                {{#newest_post}}
+                                    <em>
+                                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date
+                                                format="Do MMMM YYYY"}}</time>
+                                    </em>
+                                {{/newest_post}}
+                            {{/get}}
+                        {{/if}}
+                        <p>Discover stories from this section and more in the list of contents</p>
+                        <a class="arrow-link-filled" href="{{url}}">Explore the edition</a>
+                    </div>
+                </div>
+            </div>
+        {{/issue}}
+    {{/get}}
+{{/foreach}}
+
 {{#if @custom.show_related_articles}}
+    <section class="gh-container is-grid gh-outer">
+        <div class="gh-container-inner gh-inner">
+            <h2 class="gh-container-title">Read more</h2>
+            <div class="gh-feed">
+                {{#get "posts" include="authors" order="published_at desc"
+                       filter="id:-{{post.id}}+tag:[{{post.tags.[0].slug}}]+published_at:<'{{post.published_at}}'"
+                       limit="4" as |contemporary|}}
+                    {{#foreach contemporary}} {{> "post-card" lazyLoad=true}} {{/foreach}}
+                {{/get}}
 
-    <!--
-    A simple related article recommendation engine.
-    Related articles are those in the same issue or those written in the same section at a similar time.
-    Pointing one set of recommendations forwards in time,
-    and the other backwards ensures good inter-linking between articles to keep readers interested.
-    -->
-
-    {{#get "posts" include="authors,tags"
-           filter="id:-{{post.id}}+tag:[{{post.tags.[1].slug}}]+created_at:<'{{post.created_at}}'"
-           limit="4" as |next|}}
-        {{#if next}}
-            <!--
-            Articles in the same issue point backwards,
-            i.e. only show articles created before them in the same issue.
-            -->
-            {{#match next.length ">" "2"}}
-            <section class="gh-container is-grid gh-outer">
-                <div class="gh-container-inner gh-inner">
-                    <h2 class="gh-container-title">More from this issue</h2>
-                    <div class="gh-feed">
-                        {{#foreach next}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    </div>
-                </div>
-            </section>
-            {{/match}}
-        {{/if}}
-    {{/get}}
-
-    {{#get "posts" include="authors"
-           filter="id:-{{post.id}}+tag:[{{post.primary_tag.slug}}]+tag:-[{{post.tags.[1].slug}}]+created_at:>'{{post.created_at}}'"
-           limit="4" as |next|}}
-        {{#if next}}
-            <!--
-            Recommendations in the same section exclude those in the same article
-            because recommending the same article twice looks bad.
-            These recommendations look forwards in time.
-            -->
-            {{#match next.length ">" "2"}}
-            <section class="gh-container is-grid gh-outer">
-                <div class="gh-container-inner gh-inner">
-                    <h2 class="gh-container-title">More from this section</h2>
-                    <div class="gh-feed">
-                        {{#foreach next}}
-                            {{> "post-card" lazyLoad=true}}
-                        {{/foreach}}
-                    </div>
-                </div>
-            </section>
-            {{/match}}
-        {{/if}}
-    {{/get}}
+                {{#get "posts" include="authors,tags" order="published_at desc"
+                       filter="id:-{{post.id}}+tag:-[{{post.tags.[0].slug}}]+published_at:>'{{post.published_at}}'"
+                       limit="4" as |recent|}}
+                    {{#foreach recent}} {{> "post-card" lazyLoad=true}} {{/foreach}}
+                {{/get}}
+            </div>
+        </div>
+    </section>
 {{/if}}

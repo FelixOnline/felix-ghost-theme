@@ -2128,6 +2128,8 @@ Search                         LOGO                    Login Subscribe
     font-size: 1.4rem;
     color: var(--color-secondary-text);
     margin-top: calc(3em*var(--content-spacing-factor, 1));
+    font-family: "Acumin Pro SemiCondensed", var(--font-sans), sans-serif;
+    font-weight: bold;
 }
 
 /* Permit no bold text in the article footer. */
@@ -2242,17 +2244,18 @@ unless a heading is the very first element in the post content */
     text-underline-offset: 0.125rem;
 }
 
-.gh-content a:hover {
+.gh-content a:hover, a.arrow-link:hover {
     color: var(--color-link-text-hover);
+    text-decoration: underline;
     text-decoration-thickness: 0.0625rem;
 }
 
-.gh-content a:is(:focus, :active) {
+.gh-content a:is(:focus, :active), a.arrow-link:is(:focus, :active) {
     background-color: #ebedfa;
     color: var(--color-primary-text);
 }
 
-.gh-content a:focus {
+.gh-content a:focus, a.arrow-link:focus {
     outline: none;
 }
 
@@ -2668,6 +2671,44 @@ figcaption b, figcaption strong {
     text-decoration: underline;
 }
 
+.gh-chapter-list-heading:before {
+    border-top: .27em solid;
+    content: "";
+    display: block;
+    height: 1em;
+    width: 1.875rem;
+    position: relative;
+    left: -0.02em;
+    color: var(--ghost-accent-color);
+    margin-top: calc(2em*var(--content-spacing-factor, 1));
+}
+
+.gh-chapter-list-heading {
+    margin: 24px 0;
+}
+
+.gh-chapter-list-heading h2 {
+    font-family: var(--font-serif), serif;
+    margin: 6px 0;
+}
+
+.gh-chapter-list > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chapter-list-item {
+    border-top: 0.0625rem solid #d9d9d9;
+    margin: 0;
+    padding: .625rem 0 .5rem;
+}
+
+.chapter-list-item a {
+    font-family: "Acumin Pro SemiCondensed", var(--font-sans), sans-serif;
+    font-weight: bold;
+}
+
 .arrow-link {
     position: relative;
     text-decoration: none;
@@ -2678,7 +2719,7 @@ figcaption b, figcaption strong {
     content: "\2192";
     position: absolute;
     left: -20px;
-    color: var(--ghost-accent-color);
+    font-family: var(--font-sans), sans-serif;
 }
 
 .arrow-link-filled {
