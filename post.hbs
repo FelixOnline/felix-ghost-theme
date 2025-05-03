@@ -33,21 +33,23 @@
             <div class="gh-article-meta">
                 <div class="gh-article-author-image instapaper_ignore">
                     {{#foreach authors}}
-                        {{#if profile_image}}
-                            <a href="{{url}}">
-                                <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}">
-                            </a>
+                        {{#match slug "felix"}}
+                        {{else match slug "anonymous"}}
                         {{else}}
-                            <a href="{{url}}" class="no-author-profile-image">{{> "icons/avatar"}}</a>
-                        {{/if}}
+                            {{#if profile_image}}
+                                <a href="{{url}}">
+                                    <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}">
+                                </a>
+                            {{else}}
+                                <a href="{{url}}" class="no-author-profile-image">{{> "icons/avatar"}}</a>
+                            {{/if}}
+                        {{/match}}
                     {{/foreach}}
                 </div>
                 <div class="gh-article-meta-wrapper">
-                    {{^has author="felix,anonymous"}}
                     <h4 class="gh-article-author-name">
-                        {{#foreach authors}}{{#unless @first}}, {{/unless}}<a href="{{url}}">{{name}}</a>{{/foreach}}
+                        {{#foreach authors}}{{#match slug "felix"}}{{else match slug "anonymous"}}{{else}}{{#unless @first}}, {{/unless}}<a href="{{url}}">{{name}}</a>{{/match}}{{/foreach}}
                     </h4>
-                    {{/has}}
                     <div class="gh-article-meta-content">
                         <time class="gh-article-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
                         {{#if reading_time}}
