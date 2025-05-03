@@ -3,19 +3,22 @@
     "description": "Ghost theme for Felix - the Imperial College London student newspaper.",
     "demo": "https://felixonline.co.uk",
     "version": "1.0.0",
-    "engines": {
-        "ghost": ">=5.0.0"
-    },
     "license": "MIT",
     "scripts": {
-        "dev": "gulp",
-        "zip": "gulp zip",
+        "build:css": "postcss assets/css/screen.css -o assets/built/screen.css --no-map",
+        "build:js": "esbuild assets/js/index.js --bundle --outfile=assets/built/source.js --minify --sourcemap",
+        "build": "yarn build:css && yarn build:js",
+        "dev:css": "yarn build:css --watch",
+        "dev:js": "yarn build:js --watch",
+        "dev:hbs": "chokidar '**/*.hbs' -c 'touch assets/built/screen.css'",
+        "dev": "yarn build && concurrently 'yarn dev:css' 'yarn dev:js' 'yarn dev:hbs'",
+        "zip": "yarn build && node scripts/zip.js",
+        "upload": "node scripts/upload.js",
+        "ship": "yarn zip && yarn upload",
         "test": "gscan .",
         "test:ci": "gscan --fatal --verbose .",
-        "pretest": "gulp build",
-        "preship": "yarn test",
-        "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; else echo \"Uncomitted changes found.\" && exit 1; fi",
-        "postship": "git fetch && gulp release"
+        "pretest": "yarn build",
+        "preship": "yarn test"
     },
     "author": {
         "name": "Felix",
@@ -44,21 +47,21 @@
         "Timothy Langer"
     ],
     "devDependencies": {
+        "@tryghost/admin-api": "^1.13.13",
         "@tryghost/release-utils": "^0.8.1",
+        "archiver": "^7.0.1",
         "autoprefixer": "^10.4.21",
-        "beeper": "^3.0.0",
+        "chokidar-cli": "^3.0.0",
+        "concurrently": "^9.1.2",
         "cssnano": "^7.0.6",
+        "dotenv": "^16.5.0",
+        "esbuild": "^0.25.3",
         "gscan": "^4.48.0",
-        "gulp": "^5.0.0",
-        "gulp-concat": "^2.6.1",
-        "gulp-livereload": "^4.0.2",
-        "gulp-postcss": "^10.0.0",
-        "gulp-uglify": "^3.0.2",
-        "gulp-zip": "^6.1.0",
         "inquirer": "^12.6.0",
         "postcss": "^8.5.3",
+        "postcss-cli": "^11.0.1",
         "postcss-easy-import": "^4.0.0",
-        "pump": "^3.0.2"
+        "yargs": "^17.7.2"
     },
     "browserslist": [
         "defaults"
@@ -201,5 +204,7 @@
         ]
     },
     "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
-    "dependencies": {}
+    "dependencies": {
+        "ev-emitter": "^2.1.2"
+    }
 }
