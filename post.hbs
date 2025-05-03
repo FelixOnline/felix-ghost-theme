@@ -64,13 +64,23 @@
             {{content}}
         </section>
 
+        <footer class="gh-article-footer gh-canvas">
         {{^has tag="#Show feature image,#import-hugo,#import-xelif"}}
             {{#if feature_image_caption}}
-                <footer class="gh-article-footer gh-canvas">
-                    <p>Feature image: {{feature_image_caption}}</p>
-                </footer>
+                <p>Feature image: {{feature_image_caption}}</p>
             {{/if}}
         {{/has}}
+        {{#if tags}}
+        <div>
+            <span>Tagged in:</span>
+            <ul class="comma-separated">
+                {{#foreach tags}}
+                <li><a href="{{url}}">{{name}}</a></li>
+                {{/foreach}}
+            </ul>
+        </div>
+        {{/if}}
+        </footer>
 
     </article>
 
