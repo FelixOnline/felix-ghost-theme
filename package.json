@@ -1,7 +1,7 @@
 {
     "name": "felix",
     "description": "Ghost theme for Felix - the Imperial College London student newspaper.",
-    "demo": "https://felix.ghost.io",
+    "demo": "https://felixonline.co.uk",
     "version": "1.0.0",
     "engines": {
         "ghost": ">=5.0.0"
@@ -18,9 +18,9 @@
         "postship": "git fetch && gulp release"
     },
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org/"
+        "name": "Felix",
+        "email": "felix@ic.ac.uk",
+        "url": "https://felixonline.co.uk/"
     },
     "gpm": {
         "type": "theme",
@@ -36,26 +36,29 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/TryGhost/Source.git"
+        "url": "https://github.com/FelixOnline/felix-ghost-theme.git"
     },
-    "bugs": "https://github.com/TryGhost/Source/issues",
-    "contributors": "https://github.com/TryGhost/Source/graphs/contributors",
+    "bugs": "https://github.com/FelixOnline/felix-ghost-theme/issues",
+    "contributors": [
+        "Ghost Foundation",
+        "Timothy Langer"
+    ],
     "devDependencies": {
-        "@tryghost/release-utils": "0.8.1",
-        "autoprefixer": "10.4.20",
-        "beeper": "2.1.0",
-        "cssnano": "5.1.15",
-        "gscan": "4.47.0",
-        "gulp": "5.0.0",
-        "gulp-concat": "2.6.1",
-        "gulp-livereload": "4.0.2",
-        "gulp-postcss": "9.0.1",
-        "gulp-uglify": "3.0.2",
-        "gulp-zip": "5.1.0",
-        "inquirer": "8.2.4",
-        "postcss": "8.5.2",
-        "postcss-easy-import": "4.0.0",
-        "pump": "3.0.2"
+        "@tryghost/release-utils": "^0.8.1",
+        "autoprefixer": "^10.4.21",
+        "beeper": "^3.0.0",
+        "cssnano": "^7.0.6",
+        "gscan": "^4.48.0",
+        "gulp": "^5.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-livereload": "^4.0.2",
+        "gulp-postcss": "^10.0.0",
+        "gulp-uglify": "^3.0.2",
+        "gulp-zip": "^6.1.0",
+        "inquirer": "^12.6.0",
+        "postcss": "^8.5.3",
+        "postcss-easy-import": "^4.0.0",
+        "pump": "^3.0.2"
     },
     "browserslist": [
         "defaults"
@@ -91,7 +94,7 @@
                     "Logo on the left",
                     "Stacked"
                 ],
-                "default": "Logo in the middle"
+                "default": "Stacked"
             },
             "site_background_color": {
                 "type": "color",
@@ -123,7 +126,7 @@
                     "Off"
                 ],
                 "description": "Landing is recommended for all sites, Highlight & Magazine for those with more content",
-                "default": "Landing",
+                "default": "Highlight",
                 "group": "homepage"
             },
             "header_text": {
@@ -151,7 +154,7 @@
                     "List",
                     "Grid"
                 ],
-                "default": "List",
+                "default": "Grid",
                 "group": "homepage"
             },
             "show_images_in_feed": {
