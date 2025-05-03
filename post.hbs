@@ -30,21 +30,24 @@
                 <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
             {{/if}}
 
-            {{^has author="felix,anonymous"}}
             <div class="gh-article-meta">
                 <div class="gh-article-author-image instapaper_ignore">
                     {{#foreach authors}}
                         {{#if profile_image}}
-                            <a href="/author/{{slug}}/">
+                            <a href="{{url}}">
                                 <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}">
                             </a>
                         {{else}}
-                            <a href="/author/{{slug}}/">{{> "icons/avatar"}}</a>
+                            <a href="{{url}}" class="no-author-profile-image">{{> "icons/avatar"}}</a>
                         {{/if}}
                     {{/foreach}}
                 </div>
                 <div class="gh-article-meta-wrapper">
-                    <h4 class="gh-article-author-name">{{#foreach authors}}{{#unless @first}}, {{/unless}}<a href="/author/{{slug}}/">{{name}}</a>{{/foreach}}</h4>
+                    {{^has author="felix,anonymous"}}
+                    <h4 class="gh-article-author-name">
+                        {{#foreach authors}}{{#unless @first}}, {{/unless}}<a href="{{url}}">{{name}}</a>{{/foreach}}
+                    </h4>
+                    {{/has}}
                     <div class="gh-article-meta-content">
                         <time class="gh-article-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
                         {{#if reading_time}}
@@ -53,7 +56,6 @@
                     </div>
                 </div>
             </div>
-            {{/has}}
         </header>
         {{/has}}
 
