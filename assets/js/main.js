@@ -1,3 +1,9 @@
+import reframe from 'reframe.js';
+
+import { dropdown } from './dropdown.js';
+import { lightbox } from './lightbox.js';
+import { pagination } from './pagination.js';
+
 /* Mobile menu burger toggle */
 (function () {
     const navigation = document.querySelector('.gh-navigation');
@@ -42,15 +48,20 @@
 
 /* Infinite scroll pagination */
 (function () {
-    if (!document.body.classList.contains('home-template') && !document.body.classList.contains('post-template')) {
+    if (
+        !document.body.classList.contains('home-template') &&
+        !document.body.classList.contains('post-template')
+    ) {
         pagination();
     }
 })();
 
 /* Responsive HTML table */
 (function () {
-    const tables = document.querySelectorAll('.gh-content > table:not(.gist table)');
-    
+    const tables = document.querySelectorAll(
+        '.gh-content > table:not(.gist table)'
+    );
+
     tables.forEach(function (table) {
         const wrapper = document.createElement('div');
         wrapper.className = 'gh-table';

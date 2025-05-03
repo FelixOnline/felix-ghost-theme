@@ -1,4 +1,4 @@
-function pagination(isInfinite = true, done, isMasonry = false) {
+export function pagination(isInfinite = true, done, isMasonry = false) {
     const feedElement = document.querySelector('.gh-feed');
     if (!feedElement) return;
 
@@ -20,7 +20,9 @@ function pagination(isInfinite = true, done, isMasonry = false) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
 
-            const postElements = doc.querySelectorAll('.gh-feed:not(.gh-featured):not(.gh-related) > *');
+            const postElements = doc.querySelectorAll(
+                '.gh-feed:not(.gh-featured):not(.gh-related) > *'
+            );
             const fragment = document.createDocumentFragment();
             const elems = [];
 
@@ -57,10 +59,13 @@ function pagination(isInfinite = true, done, isMasonry = false) {
     };
 
     const loadNextWithCheck = async function () {
-        if (target.getBoundingClientRect().top <= window.innerHeight && document.querySelector('link[rel=next]')) {
+        if (
+            target.getBoundingClientRect().top <= window.innerHeight &&
+            document.querySelector('link[rel=next]')
+        ) {
             await loadNextPage();
         }
-    }
+    };
 
     const callback = async function (entries) {
         if (loading) return;
@@ -70,7 +75,10 @@ function pagination(isInfinite = true, done, isMasonry = false) {
         if (entries[0].isIntersecting) {
             // keep loading next page until target is out of the viewport or we've loaded the last page
             if (!isMasonry) {
-                while (target.getBoundingClientRect().top <= window.innerHeight && document.querySelector('link[rel=next]')) {
+                while (
+                    target.getBoundingClientRect().top <= window.innerHeight &&
+                    document.querySelector('link[rel=next]')
+                ) {
                     await loadNextPage();
                 }
             } else {

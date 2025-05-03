@@ -1,4 +1,6 @@
-function dropdown() {
+import imagesLoaded from 'imagesloaded';
+
+export function dropdown() {
     const mediaQuery = window.matchMedia('(max-width: 767px)');
 
     const head = document.querySelector('.gh-navigation');
@@ -20,7 +22,7 @@ function dropdown() {
         if (mediaQuery.matches) return;
         const submenuItems = [];
 
-        while ((nav.offsetWidth + 64) > menu.offsetWidth) {
+        while (nav.offsetWidth + 64 > menu.offsetWidth) {
             if (nav.lastElementChild) {
                 submenuItems.unshift(nav.lastElementChild);
                 nav.lastElementChild.remove();
@@ -37,14 +39,17 @@ function dropdown() {
         const toggle = document.createElement('button');
         toggle.setAttribute('class', 'gh-more-toggle gh-icon-button');
         toggle.setAttribute('aria-label', 'More');
-        toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M21.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM13.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM5.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0z"></path></svg>';
+        toggle.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M21.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM13.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM5.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0z"></path></svg>';
 
         const wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'gh-dropdown');
 
         if (submenuItems.length >= 10) {
             head.classList.add('is-dropdown-mega');
-            wrapper.style.gridTemplateRows = `repeat(${Math.ceil(submenuItems.length / 2)}, 1fr)`;
+            wrapper.style.gridTemplateRows = `repeat(${Math.ceil(
+                submenuItems.length / 2
+            )}, 1fr)`;
         } else {
             head.classList.remove('is-dropdown-mega');
         }
@@ -72,7 +77,7 @@ function dropdown() {
                 head.classList.add('is-dropdown-open');
             }
         });
-    }
+    };
 
     imagesLoaded(logo, function () {
         makeDropdown();

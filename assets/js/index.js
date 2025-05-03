@@ -1,8 +1,0 @@
-import './lib/imagesloaded.pkgd.min.js'
-import './lib/photoswipe-ui-default.min.js'
-import './lib/photoswipe.min.js'
-import './lib/reframe.min.js'
-import './dropdown.js'
-import './lightbox.js'
-import './main.js'
-import './pagination.js'
