@@ -2866,8 +2866,8 @@ figcaption b, figcaption strong {
 
 .gh-author-meta {
     display: flex;
-    gap: 10px;
-    margin-top: 14px;
+    flex-direction: column;
+    gap: 14px;
     font-size: 1.5rem;
     font-weight: 550;
     color: var(--color-secondary-text);
@@ -2887,6 +2887,11 @@ figcaption b, figcaption strong {
 .gh-author-social svg {
     width: 20px;
     height: 20px;
+}
+
+/* Hide the social div if there aren't any socials to put in it. */
+.gh-author-social:not(:has(*)) {
+    display: none;
 }
 
 @media (max-width: 1199px) {
