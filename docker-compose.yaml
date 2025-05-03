@@ -16,12 +16,19 @@ services:
     volumes:
       - ghost:/var/lib/ghost/content
       - .:/var/lib/ghost/content/themes/felix
+    depends_on:
+      db:
+        condition: service_healthy
 
   db:
-    image: mysql:8.0
+    image: mysql:9
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     volumes:
       - db:/var/lib/mysql
 
