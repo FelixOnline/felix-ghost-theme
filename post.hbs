@@ -21,9 +21,15 @@
         <header class="gh-article-header gh-canvas">
 
             {{#if primary_tag}}
+            {{!--
+            Check whether the tag has a color. We assume that only tags representing
+            features or established sections will be assigned a color.
+            --}}
+            {{#if primary_tag.accent_color}}
                 {{#primary_tag}}
                     <a class="gh-article-section{{#match slug "=" "catnip"}} rainbow-text{{/match}}" href="{{url}}"{{#if accent_color}} style="color: {{accent_color}}"{{/if}}>{{name}}</a>
                 {{/primary_tag}}
+            {{/if}}
             {{/if}}
             <h1 class="gh-article-title is-title">{{title}}</h1>
             {{#if custom_excerpt}}
