@@ -1,6 +1,18 @@
 <article class="gh-card {{post_class}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}}">
     <a class="gh-card-link" href="{{url}}">
-        {{#if feature_image}}
+
+        <div class="gh-card-header">
+            <div>
+                {{#unless hideSection}}
+                    {{#if primary_tag}}
+                    <header>
+                        <p class="gh-card-tag"{{#if primary_tag.accent_color}} style="color: {{primary_tag.accent_color}};"{{/if}}>{{primary_tag.name}}</p>
+                    </header>
+                    {{/if}}
+                {{/unless}}
+                <h3 class="gh-card-title is-title">{{title}}</h3>
+            </div>
+            {{#if feature_image}}
             <figure class="gh-card-image">
                 <img
                     srcset="{{img_url feature_image size="xs" format="webp"}} 160w,
@@ -15,16 +27,9 @@
                     {{#if lazyLoad}}loading="lazy"{{/if}}
                 >
             </figure>
-        {{else}}
-            <div class="gh-card-image missing-feature-image"></div>
-        {{/if}}
+            {{/if}}
+        </div>
         <div class="gh-card-wrapper">
-            {{#unless hideSection}}
-                {{#if primary_tag}}
-                    <p class="gh-card-tag"{{#if primary_tag.accent_color}} style="color: {{primary_tag.accent_color}};"{{/if}}>{{primary_tag.name}}</p>
-                {{/if}}
-            {{/unless}}
-            <h3 class="gh-card-title is-title">{{title}}</h3>
             {{#if custom_excerpt}}
                 <p class="gh-card-excerpt is-body">{{custom_excerpt}}</p>
             {{/if}}
