@@ -910,23 +910,12 @@ Search                         LOGO                    Login Subscribe
     position: relative;
 }
 
-.gh-card-link {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.gh-card-header {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.gh-card-header .gh-card-image {
+.gh-card-link .gh-card-image {
     width: 84px;
     aspect-ratio: 1;
+    float: right;
+    margin-left: 8px;
+    margin-bottom: 20px;
 }
 
 .gh-card-link:hover {
@@ -1550,6 +1539,7 @@ Search                         LOGO                    Login Subscribe
 .gh-featured-feed .gh-card-image {
     width: 72px;
     aspect-ratio: 1;
+    float: right;
 }
 
 @container featured-card (width < 240px) {
