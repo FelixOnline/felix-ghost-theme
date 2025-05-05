@@ -2799,7 +2799,7 @@ figcaption b, figcaption strong {
 }
 
 .post-template .gh-container.is-grid .gh-feed {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .post-template .gh-container .gh-container-title {
