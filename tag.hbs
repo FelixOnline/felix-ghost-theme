@@ -26,6 +26,16 @@
                                 {{/oldest_post}}
                             {{/get}}
                             <div class="kg-card kg-button-card kg-align-left"><a href="/pdf/{{slug}}" class="kg-btn kg-btn-accent">Download issue PDF</a></div>
+                        {{#get "tags" filter="slug:~^'issue-'+slug:<{{slug}}" order="slug desc" limit="1" as |previssue|}}
+                            {{#if previssue}}{{#previssue}}
+                                {{#link href=(url)}}Previous issue{{/link}}
+                            {{/previssue}}{{/if}}
+                        {{/get}}
+                        {{#get "tags" filter="slug:~^'issue-'+slug:>{{slug}}" order="slug asc" limit="1" as |nextissue|}}
+                            {{#if nextissue}}{{#nextissue}}
+                                {{#link href=(url)}}Next issue{{/link}}
+                            {{/nextissue}}{{/if}}
+                        {{/get}}
                         {{/issue}}
                     {{/get}}
                 </header>
