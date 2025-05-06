@@ -1,28 +1,25 @@
 #!/usr/bin/env node
 
-const path = require("path");
-const fs = require("fs");
-const GhostAdminAPI = require("@tryghost/admin-api");
-const yargs = require("yargs/yargs");
-const { hideBin } = require("yargs/helpers");
+import path from "path";
+import fs from "fs";
+import GhostAdminAPI from "@tryghost/admin-api";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
+import dotenv from "dotenv";
+import { packageName } from "./lib/package";
 
 // Load .env file variables into process.env (if it exists)
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
-// --- Configuration ---
 
-// Read theme name from package.json
-let packageJson;
-try {
-  packageJson = require("../package.json");
-} catch (err) {
-  console.error("❌ Error: package.json not found in the parent directory.");
-  process.exit(1);
+interface Argv {
+  url: string;
+  key?: string;
+  file: string;
+  help?: boolean;
+  h?: boolean;
+  [key: string]: any; // For other yargs properties like $0, _
 }
-const themeName = packageJson.name;
-const defaultZipPath = path.join(__dirname, `../dist/${themeName}.zip`);
-
-// --- Argument Parsing ---
 
 const argv = yargs(hideBin(process.argv))
   .usage(
@@ -44,16 +41,14 @@ const argv = yargs(hideBin(process.argv))
     alias: "f",
     type: "string",
     description: "Path to the theme zip file",
-    default: defaultZipPath,
+    default: path.join(__dirname, "..", "dist", `${packageName}.zip`),
   })
   .help()
-  .alias("help", "h").argv;
+  .alias("help", "h").argv as Argv;
 
-// --- Validation ---
-
-const apiUrl = argv.url.replace(/\/$/, ""); // Remove trailing slash if present
-const apiKey = argv.key;
-const zipFilePath = path.resolve(argv.file); // Ensure absolute path
+const apiUrl: string = argv.url.replace(/\/$/, ""); // Remove trailing slash if present
+const apiKey: string | undefined = argv.key;
+const zipFilePath: string = path.resolve(argv.file); // Ensure absolute path
 
 if (!apiKey) {
   console.error("❌ Error: Ghost Admin API Key is required.");
@@ -77,31 +72,50 @@ if (!id || !secret || id.length !== 24 || secret.length !== 64) {
   );
 }
 
-// --- API Initialisation ---
-
 const api = new GhostAdminAPI({
   url: apiUrl,
   key: apiKey,
   version: "v5.0",
 });
 
-// --- Upload Logic ---
+interface GhostTheme {
+  name?: string;
+  active?: boolean;
+  [key: string]: any;
+}
 
-async function uploadTheme() {
+interface GhostError {
+  message: string;
+  context?: string;
+}
+
+interface GhostErrorResponse {
+  response?: {
+    data?: {
+      errors?: GhostError[];
+    };
+  };
+  [key: string]: any;
+}
+
+async function uploadTheme(): Promise<void> {
   console.log(
-    `\n🚀 Uploading theme '${themeName}' from ${zipFilePath} to ${apiUrl}...`
+    `\n🚀 Uploading theme '${packageName}' to ${apiUrl}...`
   );
 
   try {
-    const response = await api.themes.upload({ file: zipFilePath });
-    const uploadedThemeName = response?.name;
-    const isActive = response?.active;
-    if (uploadedThemeName === themeName) {
+    const response: GhostTheme | undefined = await api.themes.upload({
+      file: zipFilePath,
+    });
+    const uploadedThemeName: string | undefined = response?.name;
+    const isActive: boolean | undefined = response?.active;
+
+    if (uploadedThemeName === packageName) {
       console.log(`✅ Theme '${uploadedThemeName}' uploaded successfully!`);
       if (!isActive) {
-        console.log(`\n🔗 Activating theme '${themeName}'...`);
-        await api.themes.activate(themeName);
-        console.log(`✅ Theme '${themeName}' activated successfully!`);
+        console.log(`\n🔗 Activating theme '${packageName}'...`);
+        await api.themes.activate(packageName);
+        console.log(`✅ Theme '${packageName}' activated successfully!`);
       }
     } else {
       console.log(
@@ -109,7 +123,8 @@ async function uploadTheme() {
       );
       console.log("Full response:", JSON.stringify(response, null, 2));
     }
-  } catch (err) {
+  } catch (error) {
+    const err = error as GhostErrorResponse;
     console.error(`❌ Error uploading theme:`);
     // Provide more specific feedback if available
     if (err.response?.data?.errors?.[0]?.message) {
@@ -123,7 +138,5 @@ async function uploadTheme() {
     process.exit(1);
   }
 }
-
-// --- Execution ---
 
 uploadTheme();
