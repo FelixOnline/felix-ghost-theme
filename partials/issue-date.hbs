@@ -1,0 +1,11 @@
+{{! Since the date the tag was created is unreliable, instead get the oldest post with this tag. }}
+{{#get
+    'posts' filter='tag:{{slug}}' order='published_at desc' limit='1'
+    as |newest_post|
+}}
+    {{#newest_post}}
+        <time datetime='{{date format='YYYY-MM-DD'}}'>
+            {{date format='Do MMM YYYY'}}
+        </time>
+    {{/newest_post}}
+{{/get}}

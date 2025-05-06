@@ -20,11 +20,7 @@
                          instead get the oldest post with this tag. -->
                     {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
                         {{#issue}}
-                            {{#get "posts" filter="tag:{{slug}}" order="published_at asc" limit="1" as |oldest_post|}}
-                                {{#oldest_post}}
-                                    <em><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="Do MMMM YYYY"}}</time></em>
-                                {{/oldest_post}}
-                            {{/get}}
+                            <em>{{> issue-date}}</em>
                             <div class="kg-card kg-button-card kg-align-left"><a href="/pdf/{{slug}}" class="kg-btn kg-btn-accent">Download issue PDF</a></div>
                         {{#get "tags" filter="slug:~^'issue-'+slug:<{{slug}}" order="slug desc" limit="1" as |previssue|}}
                             {{#if previssue}}{{#previssue}}

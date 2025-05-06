@@ -1817,6 +1817,10 @@ Search                         LOGO                    Login Subscribe
     overflow: hidden;
 }
 
+.gh-container.is-grid.is-compact-grid .gh-feed {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
 .gh-container.is-grid .gh-card::before {
     position: absolute;
     top: calc(var(--grid-gap) / -2);
@@ -2275,6 +2279,7 @@ unless a heading is the very first element in the post content */
     text-decoration-color: var(--color-link-text);
     text-decoration-thickness: 0.125rem;
     text-underline-offset: 0.125rem;
+    width: fit-content;
 }
 
 .gh-content a:hover, a.arrow-link:hover {
@@ -2642,14 +2647,29 @@ figcaption b, figcaption strong {
 }
 
 /* Issue information */
+.gh-issue-container {
+    container-name: issue-cover;
+    container-type: inline-size;
+}
+
 .gh-issue {
     gap: 2rem;
     display: flex;
     flex-direction: column;
-    margin-top: 48px;
     justify-content: center;
+}
+
+.post-template .gh-issue {
+    margin-top: 48px;
     border-top: 1px solid var(--color-border);
     padding-top: 48px;
+}
+
+.gh-issue-cover {
+    aspect-ratio: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gh-issue.no-front-cover {
@@ -2675,7 +2695,7 @@ figcaption b, figcaption strong {
 }
 
 
-@media (min-width: 512px) {
+@container issue-cover (width > 384px) {
     .gh-issue {
         flex-direction: row;
     }

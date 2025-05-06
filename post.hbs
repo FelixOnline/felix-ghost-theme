@@ -140,24 +140,12 @@
 {{#foreach tags}}
     {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
         {{#issue}}
-            <div class="gh-canvas">
+            <div class="gh-canvas gh-issue-container">
                 <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}">
                     {{> "feature-image"}}
                     <div class="gh-issue-description">
                         <h3>From <span class="gh-issue-name">{{name}}</span></h3>
-                        {{!-- Since the date the tag was created is unreliable, instead get the oldest post with this tag. --}}
-                        {{#if description}}
-                            <em>{{description}}</em>
-                        {{else}}
-                            {{#get "posts" filter="tag:{{slug}}" order="published_at desc" limit="1" as |newest_post|}}
-                                {{#newest_post}}
-                                    <em>
-                                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date
-                                                format="Do MMMM YYYY"}}</time>
-                                    </em>
-                                {{/newest_post}}
-                            {{/get}}
-                        {{/if}}
+                        <em>{{#if description}}{{description}}{{else}}{{> issue-date}}{{/if}}</em>
                         <p>Discover stories from this section and more in the list of contents</p>
                         <a class="arrow-link-filled" href="{{url}}">Explore the edition</a>
                     </div>
