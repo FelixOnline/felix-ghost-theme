@@ -108,22 +108,23 @@
 
 </main>
 
-{{/post}}
-
+{{#has tag="count:>1"}}
+{{#match tags.[0].visibility "public"}}
+{{#match tags.[1].visibility "public"}}
 {{#get "posts" order="published_at desc" include="tags"
-       filter="id:-{{post.id}}+tag:[{{post.tags.[0].slug}}]+tag:[{{post.tags.[1].slug}}]"}}
+       filter="id:-{{id}}+tag:[{{tags.[0].slug}}]+tag:[{{tags.[1].slug}}]"}}
     {{#match posts.length ">" "1"}}
         <div class="gh-canvas">
             <div class="gh-chapter-list">
                 <div class="gh-chapter-list-heading">
-                    <h2><a href="{{posts.[0].tags.[0].url}}">{{posts.[0].tags.[0].name}}</a></h2>
-                    <p>{{posts.[0].tags.[1].name}}</p>
+                    <h2><a href="{{../tags.[0].url}}">{{../tags.[0].name}}</a></h2>
+                    <p>{{../tags.[1].name}}</p>
                 </div>
                 <ul>
                     {{#foreach posts}}
                         <li class="chapter-list-item">
                             <a class="arrow-link"
-                               href="{{url}}">{{title}} {{post.slug}}</a>
+                               href="{{url}}">{{title}}</a>
                         </li>
                     {{/foreach}}
                 </ul>
@@ -131,9 +132,12 @@
         </div>
     {{/match}}
 {{/get}}
+{{/match}}
+{{/match}}
+{{/has}}
 
 {{!-- Iterate over each tag, check if the tag has a slug starting with "issue-", output its details --}}
-{{#foreach post.tags}}
+{{#foreach tags}}
     {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
         {{#issue}}
             <div class="gh-canvas">
@@ -164,22 +168,26 @@
 {{/foreach}}
 
 {{#if @custom.show_related_articles}}
+{{#has tag="count:>0"}}
     <section class="gh-container is-grid gh-outer">
         <div class="gh-container-inner gh-inner">
             <h2 class="gh-container-title">Read more</h2>
             <div class="gh-feed">
                 {{#get "posts" include="authors" order="published_at desc"
-                       filter="id:-{{post.id}}+tag:[{{post.tags.[0].slug}}]+published_at:<'{{post.published_at}}'"
+                       filter="id:-{{id}}+tag:[{{tags.[0].slug}}]+published_at:<'{{published_at}}'"
                        limit="4" as |contemporary|}}
                     {{#foreach contemporary}} {{> "post-card" lazyLoad=true}} {{/foreach}}
                 {{/get}}
 
                 {{#get "posts" include="authors,tags" order="published_at desc"
-                       filter="id:-{{post.id}}+tag:-[{{post.tags.[0].slug}}]+published_at:>'{{post.published_at}}'"
+                       filter="id:-{{id}}+tag:-[{{tags.[0].slug}}]+published_at:>'{{published_at}}'"
                        limit="4" as |recent|}}
                     {{#foreach recent}} {{> "post-card" lazyLoad=true}} {{/foreach}}
                 {{/get}}
             </div>
         </div>
     </section>
+{{/has}}
 {{/if}}
+
+{{/post}}
