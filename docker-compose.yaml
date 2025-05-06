@@ -16,6 +16,8 @@ services:
     volumes:
       - ghost:/var/lib/ghost/content
       - .:/var/lib/ghost/content/themes/felix
+      - ./routes.yaml:/var/lib/ghost/content/settings/routes.yaml
+      - ./redirects.yaml:/var/lib/ghost/content/data/redirects.yaml
     depends_on:
       db:
         condition: service_healthy
