@@ -16,8 +16,8 @@
                 <header class="gh-archive-wrapper">
                     <h1 class="gh-article-title is-title">{{name}}</h1>
                     {{#if description}}{{{description}}}{{/if}}
-                    <!-- Since the date the tag was created is unreliable,
-                         instead get the oldest post with this tag. -->
+                    {{!-- Since the date the tag was created is unreliable,
+                          instead get the oldest post with this tag. --}}
                     {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
                         {{#issue}}
                             <em>{{> issue-date}}</em>
