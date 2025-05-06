@@ -33,7 +33,7 @@
             {{else}}
                 {{#get "tags" filter="slug:~^'issue-'" order="slug desc" limit="1" as |issue|}}
                     {{#issue}}
-                        <a href="{{@site.url}}/pdf/{{slug}}" class="gh-button gh-button-secondary">{{name}} (PDF)</a>
+                        <a href="{{url}}" class="gh-button gh-button-secondary">{{name}}</a>
                     {{/issue}}
                 {{/get}}
                 <div class="gh-navigation-members">
