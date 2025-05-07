@@ -11,30 +11,34 @@
                 }
             </style>
         {{/if}}
-        <section class="gh-archive gh-content{{#if feature_image}} has-image{{/if}}{{#if @custom.show_publication_info_sidebar}} has-sidebar{{/if}} gh-inner">
+        <section class="gh-archive {{#if feature_image}} has-image{{/if}}{{#if @custom.show_publication_info_sidebar}} has-sidebar{{/if}} gh-inner">
             <div class="gh-archive-inner">
                 <header class="gh-archive-wrapper">
                     <h1 class="gh-article-title is-title">{{name}}</h1>
-                    {{#if description}}{{{description}}}{{/if}}
+                    <section class="gh-content">
+                    <div>{{#if description}}{{{description}}}{{/if}}</div>
                     {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
                         {{#issue}}
                         {{#if feature_image}}
                             {{!-- Assume that if it doesn't have a cover image, we probably don't have a PDF to source a cover image from in the first place. --}}
                             <div class="kg-card kg-button-card kg-align-left"><a href="/{{slug}}.pdf" class="kg-btn kg-btn-accent">Download issue PDF</a></div>
                         {{/if}}
+                        <div class="kg-card kg-button-card kg-align-left">
                         {{#get "tags" filter="slug:~^'issue-'+slug:<{{slug}}" order="slug desc" limit="1" as |previssue|}}
                             {{#if previssue}}{{#previssue}}
-                                {{#link href=(url)}}Previous issue{{/link}}
+                                <a href="{{url}}" class="kg-btn">Previous issue</a>
                             {{/previssue}}{{/if}}
                         {{/get}}
+                            <a href="/issues/#{{slug}}" class="kg-btn">View all issues</a>
                         {{#get "tags" filter="slug:~^'issue-'+slug:>{{slug}}" order="slug asc" limit="1" as |nextissue|}}
                             {{#if nextissue}}{{#nextissue}}
-                                {{#link href=(url)}}Next issue{{/link}}
+                                <a href="{{url}}" class="kg-btn">Next issue</a>
                             {{/nextissue}}{{/if}}
                         {{/get}}
-                        <a href="/issues/#{{slug}}">View all issues</a>
+                        </div>
                         {{/issue}}
                     {{/get}}
+                    </section>
                 </header>
                 {{> "feature-image"}}
             </div>

@@ -2860,11 +2860,11 @@ figcaption b, figcaption strong {
 
 .gh-archive-wrapper {
     display: grid;
+    align-content: center;
     gap: 0.5em;
 }
 
 .gh-archive.has-image .gh-archive-inner {
-    align-items: center;
     grid-column: 1 / -1;
 }
 
@@ -2941,6 +2941,10 @@ figcaption b, figcaption strong {
         display: flex;
         flex-direction: column-reverse;
         align-items: flex-start;
+    }
+
+    .gh-archive img {
+        height: 30vh;
     }
 
     .author-template .gh-archive-inner {
