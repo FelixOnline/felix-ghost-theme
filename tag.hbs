@@ -18,7 +18,10 @@
                     {{#if description}}{{{description}}}{{/if}}
                     {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
                         {{#issue}}
-                            <div class="kg-card kg-button-card kg-align-left"><a href="/pdf/{{slug}}" class="kg-btn kg-btn-accent">Download issue PDF</a></div>
+                        {{#if feature_image}}
+                            {{!-- Assume that if it doesn't have a cover image, we probably don't have a PDF to source a cover image from in the first place. --}}
+                            <div class="kg-card kg-button-card kg-align-left"><a href="/{{slug}}.pdf" class="kg-btn kg-btn-accent">Download issue PDF</a></div>
+                        {{/if}}
                         {{#get "tags" filter="slug:~^'issue-'+slug:<{{slug}}" order="slug desc" limit="1" as |previssue|}}
                             {{#if previssue}}{{#previssue}}
                                 {{#link href=(url)}}Previous issue{{/link}}
@@ -29,6 +32,7 @@
                                 {{#link href=(url)}}Next issue{{/link}}
                             {{/nextissue}}{{/if}}
                         {{/get}}
+                        {{#link href="/issues"}}View all issues{{/link}}
                         {{/issue}}
                     {{/get}}
                 </header>

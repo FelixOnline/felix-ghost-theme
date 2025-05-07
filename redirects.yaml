@@ -6979,6 +6979,9 @@
   # felixonline.co.uk/pdf/issue-1856
   ^/pdf/issue-0*([0-9]+)/?$: https://issues.felixonline.co.uk/felix_$1.pdf
 
+  # felixonline.co.uk/issue-1856.pdf
+  ^/issue-0*([0-9]+)\.pdf/?$: https://issues.felixonline.co.uk/felix_$1.pdf
+
   # felixonline.co.uk/issues/felix_326/
   ^/issues/felix_([0-9]+)/?$: https://issues.felixonline.co.uk/felix_$1.pdf
 
@@ -6994,6 +6997,12 @@
   # felixonline.co.uk/issuearchive/decade/1970
   ^/issuearchive/decade/([0-9]+)/?$: https://archive.felixonline.co.uk/browse/$1
 
+  /publications/felix: /issues
+  /publications/phoenix: /phoenix
+
+  /go/issuearchive: /issues
+  /issuearchive: /issues
+  /issue-archive: /issues
 
   /articles/youre-allowed-to-make-mistakes-to-learn-as-you-go/: /articles/the-news-stories-im-proud-of-the-most-are-the-works-which-have-a-big-impact/
   /articles/the-news-stories-im-proud-of-the-most-are-the-works-which-have-a-big-impact-2/: /articles/the-news-stories-im-proud-of-the-most-are-the-works-which-have-a-big-impact/

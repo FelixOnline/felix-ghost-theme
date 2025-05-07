@@ -1,12 +1,16 @@
 {{!< default }}
 
+{{#post}}
 <main class="gh-main gh-outer">
   <section class="gh-archive gh-content gh-inner">
-    <div class="gh-archive-inner">
-      <header class="gh-archive-wrapper">
+    <div class="gh-archive-inner kg-width-full">
+      <header>
         <h1 class="gh-article-title is-title">
-          Issue Archive
+          {{title}}
         </h1>
+        {{#if custom_excerpt}}
+            <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
+        {{/if}}
       </header>
     </div>
   </section>
@@ -22,7 +26,7 @@
                 <a class="gh-card-link" href="{{url}}">
                   <div class="gh-card-wrapper">
                     <div class="gh-issue-container">
-                      <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}">
+                      <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}" id="{{slug}}">
                         <header class="gh-issue-cover">
                           {{> "feature-image"}}
                         </header>
@@ -43,3 +47,4 @@
     </div>
   </section>
 </main>
+{{/post}}
