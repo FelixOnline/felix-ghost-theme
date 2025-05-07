@@ -2679,8 +2679,9 @@ figcaption b, figcaption strong {
 .gh-issue img {
     border-radius: 0.125rem;
     box-shadow: rgba(0, 0, 0, 0.4) -0.125rem 0.125rem 0.25rem 0px;
-    width: 14rem;
+    width: 90cqi;
     min-width: 12rem;
+    max-width: 18rem;
 }
 
 .gh-issue-description {
@@ -2695,7 +2696,7 @@ figcaption b, figcaption strong {
 }
 
 
-@container issue-cover (width > 384px) {
+@container issue-cover (width > 280px) {
     .gh-issue {
         flex-direction: row;
     }
