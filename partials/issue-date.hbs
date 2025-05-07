@@ -1,3 +1,6 @@
+{{#if description}}
+{{description}}
+{{else}}
 {{! Since the date the tag was created is unreliable, instead get the oldest post with this tag. }}
 {{#get
     'posts' filter='tag:{{slug}}' order='published_at desc' limit='1'
@@ -9,3 +12,4 @@
         </time>
     {{/newest_post}}
 {{/get}}
+{{/if}}

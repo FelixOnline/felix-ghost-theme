@@ -17,7 +17,6 @@
         <div class="gh-feed">
         {{#get "tags" filter="slug:~^'issue-'" include="count.posts" order="slug desc" limit="all" as |issues|}}
           {{#foreach issues as |issue|}}
-            {{#log issue}}{{/log}}
             {{#issue}}
               <div class="gh-card">
                 <a class="gh-card-link" href="{{url}}">
@@ -29,7 +28,7 @@
                         </header>
                         <main class="gh-issue-description">
                             <h3><span class="gh-issue-name">{{name}}</span></h3>
-                            <em>{{> issue-date}}</em>
+                            {{#if description}}<em>{{description}}</em>{{/if}}
                         </main>
                       </div>
                     </div>
