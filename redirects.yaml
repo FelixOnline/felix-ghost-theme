@@ -6966,6 +6966,7 @@
   ^/edit/.*$: /ghost/
 
   ^(/go)?/sexsurvey: /articles/sex-survey-2024/
+  /drugsurvey: https://imperial.eu.qualtrics.com/jfe/form/SV_1SKBaNNfRssFGWq?Q_CHL=qr
   /analytics/?: https://dash.cloudflare.com/50734aeb93a35de4711d9de60f5d32ab/web-analytics/overview/page-views?siteTag~in=aa9c7eabf62b41f89bbd72527b40750b&excludeBots=Yes&referer~neq=felix.ghost.io&referer~neq=search.google.com&host=felixonline.co.uk&time-window=10080
 
   # felixonline.co.uk/archive/IC_1949/1949_0001_A.pdf
