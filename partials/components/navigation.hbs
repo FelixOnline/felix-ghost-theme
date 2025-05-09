@@ -31,7 +31,7 @@
                     {{> "search-toggle"}}
                 {{/match}}
             {{else}}
-                {{#get "tags" filter="slug:~^'issue-'" order="slug desc" limit="1" as |issue|}}
+                {{#get "tags" filter="slug:~^'issue-'+feature_image:-null" order="slug desc" limit="1" as |issue|}}
                     {{#issue}}
                         <a href="{{url}}" class="gh-button gh-button-secondary">{{name}}</a>
                     {{/issue}}
