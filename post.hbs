@@ -138,8 +138,7 @@
 
 {{!-- Iterate over each tag, check if the tag has a slug starting with "issue-", output its details --}}
 {{#foreach tags}}
-    {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
-        {{#issue}}
+    {{#match slug "~^" "issue-"}}
             <div class="gh-canvas gh-issue-container">
                 <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}">
                     {{> "feature-image"}}
@@ -151,8 +150,7 @@
                     </div>
                 </div>
             </div>
-        {{/issue}}
-    {{/get}}
+    {{/match}}
 {{/foreach}}
 
 {{#if @custom.show_related_articles}}

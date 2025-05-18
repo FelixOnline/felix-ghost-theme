@@ -17,8 +17,7 @@
                     <h1 class="gh-article-title is-title">{{name}}</h1>
                     <section class="gh-content">
                     <div>{{#if description}}{{{description}}}{{/if}}</div>
-                    {{#get "tags" filter="slug:~^'issue-'+slug:{{slug}}" limit="1" as |issue|}}
-                        {{#issue}}
+                    {{#match slug "~^" "issue-"}}
                         {{#if feature_image}}
                             {{!-- Assume that if it doesn't have a cover image, we probably don't have a PDF to source a cover image from in the first place. --}}
                             <div class="kg-card kg-button-card kg-align-left"><a href="/{{slug}}.pdf" class="kg-btn kg-btn-accent">Download issue PDF</a></div>
@@ -36,8 +35,7 @@
                             {{/nextissue}}{{/if}}
                         {{/get}}
                         </div>
-                        {{/issue}}
-                    {{/get}}
+                    {{/match}}
                     </section>
                 </header>
                 {{> "feature-image"}}
