@@ -6969,6 +6969,13 @@
   /drugsurvey: https://imperial.eu.qualtrics.com/jfe/form/SV_1SKBaNNfRssFGWq?Q_CHL=qr
   /analytics/?: https://dash.cloudflare.com/50734aeb93a35de4711d9de60f5d32ab/web-analytics/overview/page-views?siteTag~in=aa9c7eabf62b41f89bbd72527b40750b&excludeBots=Yes&referer~neq=felix.ghost.io&referer~neq=search.google.com&host=felixonline.co.uk&time-window=10080
 
+  # Exceptional case: Daily Felix 2011
+  /issue-1484a.pdf: https://issues.felixonline.co.uk/felix-daily-2011_1.pdf
+  /issue-1484b.pdf: https://issues.felixonline.co.uk/felix-daily-2011_2.pdf
+  /issue-1484c.pdf: https://issues.felixonline.co.uk/felix-daily-2011_3.pdf
+  /issue-1484d.pdf: https://issues.felixonline.co.uk/felix-daily-2011_4.pdf
+  /issue-1484e.pdf: https://issues.felixonline.co.uk/felix-daily-2011_5.pdf
+
   # felixonline.co.uk/archive/IC_1949/1949_0001_A.pdf
   # felixonline.co.uk/version_1/archive/IC_2005/2005_1324_A.pdf
   # felixonline.co.uk/archive/IC_2010/2010_1450_A
