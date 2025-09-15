@@ -28,7 +28,13 @@
                                 <a href="{{url}}" class="kg-btn">Previous issue</a>
                             {{/previssue}}{{/if}}
                         {{/get}}
-                            <a href="/issues/#{{slug}}" class="kg-btn">View all issues</a>
+                            {{log "tag:archive," slug "]"}}
+                        {{#get "pages" filter="tag:archive+tag:{{slug}}" limit="1" as |archiveyear|}}
+                            {{log archiveyear}}
+                            {{#if archiveyear}}{{#archiveyear}}
+                                <a href="{{url}}" class="kg-btn">View all issues</a>
+                            {{/archiveyear}}{{/if}}
+                        {{/get}}
                         {{#get "tags" filter="slug:~^'issue-'+slug:>{{slug}}" order="slug asc" limit="1" as |nextissue|}}
                             {{#if nextissue}}{{#nextissue}}
                                 <a href="{{url}}" class="kg-btn">Next issue</a>

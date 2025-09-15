@@ -6994,16 +6994,19 @@
   ^/issues/felix_([0-9]+)/?$: https://issues.felixonline.co.uk/felix_$1.pdf
 
   # felixonline.co.uk/publications/felix/
-  ^/publications/felix/$: https://archive.felixonline.co.uk/browse
+  ^/publications/felix/$: https://felixonline.co.uk/issues-2024/
 
   # felixonline.co.uk/issuearchive/year/2017
-  ^/issuearchive/year/([0-9]+)/?$: https://archive.felixonline.co.uk/browse/$1
+  ^/issuearchive/year/([0-9]+)/?$: https://felixonline.co.uk/issues-$1/
 
   # felixonline.co.uk/publications/felix/1984/
-  ^/publications/felix/([0-9]+)/?$: https://archive.felixonline.co.uk/browse/$1
+  ^/publications/felix/([0-9]+)/?$: https://felixonline.co.uk/issues-$1/
 
   # felixonline.co.uk/issuearchive/decade/1970
-  ^/issuearchive/decade/([0-9]+)/?$: https://archive.felixonline.co.uk/browse/$1
+  ^/issuearchive/decade/([0-9]+)/?$: https://felixonline.co.uk/issues-$1/
+
+  # archive.felixonline.co.uk/browse/1970
+  ^/browse/([0-9]+)/?$: https://felixonline.co.uk/issues-$1/
 
   /publications/felix: /issues
   /publications/phoenix: /phoenix

@@ -50,17 +50,18 @@
         "@tryghost/admin-api": "^1.13.13",
         "@tryghost/release-utils": "^0.8.1",
         "@types/archiver": "^6.0.3",
-        "@types/node": "^22.15.12",
+        "@types/node": "^24.3.3",
         "@types/yargs": "^17.0.33",
         "archiver": "^7.0.1",
         "autoprefixer": "^10.4.21",
         "chokidar-cli": "^3.0.0",
         "concurrently": "^9.1.2",
         "cssnano": "^7.0.6",
-        "dotenv": "^16.5.0",
+        "dotenv": "^17.2.2",
         "esbuild": "^0.25.3",
         "ev-emitter": "^2.1.2",
-        "gscan": "^4.48.0",
+        "ghost-cli": "^1.28.3",
+        "gscan": "^5.1.0",
         "imagesloaded": "^5.0.0",
         "inquirer": "^12.6.0",
         "photoswipe": "^5.4.4",
@@ -70,7 +71,7 @@
         "reframe.js": "^4.0.2",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
-        "yargs": "^17.7.2"
+        "yargs": "^18.0.0"
     },
     "browserslist": [
         "defaults"
@@ -97,7 +98,13 @@
                 "width": 2000
             }
         },
-        "card_assets": true,
+        "card_assets": {
+            "exclude": [
+                "audio",
+                "nft",
+                "product"
+            ]
+        },
         "custom": {
             "navigation_layout": {
                 "type": "select",

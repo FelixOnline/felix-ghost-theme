@@ -53,7 +53,7 @@ docker compose up --pull always --force-recreate --remove-orphans
 Use `CTRL+C` to stop the Ghost server once you are done.
 
 The first run can take a while to initialise.
-Once Ghost is ready, the site should be ready at [`http://localhost:8080`](http://localhost:8080).
+Once Ghost is ready, the site should be ready at [`http://localhost:2368`](http://localhost:2368).
 
 If you encounter permission issues with the `.git` folder, you may need to reset its permissions with
 
@@ -61,7 +61,9 @@ If you encounter permission issues with the `.git` folder, you may need to reset
 chmod -R 777 .git
 ```
 
-Go to the Ghost admin panel [`http://localhost:8080/ghost/`](http://localhost:8080/ghost/)
+### Site setup
+
+Go to the Ghost admin panel [`http://localhost:2368/ghost/`](http://localhost:2368/ghost/)
 and create your local administrator account.
 
 ### Testing locally
@@ -133,4 +135,4 @@ You can add your own SVG icons in the same manner.
 Released under the [MIT licence](LICENSE).
 
 * Copyright © 2013–2023 Ghost Foundation
-* Copyright © 2024 Felix
+* Copyright © 2024–2025 Felix

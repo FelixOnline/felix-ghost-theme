@@ -9,10 +9,6 @@ routes:
     controller: channel
     filter: tag:[food,travel]
 
-  /issues/:
-    template: issue-archive
-    data: page.issues
-
 collections:
   /:
     permalink: /articles/{slug}/

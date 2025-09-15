@@ -20,6 +20,50 @@
             {{content}}
         </section>
 
+        {{#match primary_tag.slug "archive"}}
+        <section class="gh-canvas">
+            <div class="kg-card kg-button-card kg-align-left">
+                {{#get "pages" filter="tag:archive+slug:<{{slug}}" order="slug desc" limit="1" as |prevyear|}}
+                {{#if prevyear}}{{#prevyear}}<a href="{{url}}" class="kg-btn">Previous year</a>{{/prevyear}}{{/if}}
+                {{/get}}
+                {{!-- <a href="/issues/" class="kg-btn">View all years</a> --}}
+                {{#get "pages" filter="tag:archive+slug:>{{slug}}" order="slug asc" limit="1" as |nextyear|}}
+                {{#if nextyear}}{{#nextyear}}<a href="{{url}}" class="kg-btn">Next year</a>{{/nextyear}}{{/if}}
+                {{/get}}
+            </div>
+        </section>
+        <section class="gh-container is-grid is-compact-grid gh-outer">
+            <div class="gh-container-inner gh-inner">
+                <main class="gh-main">
+                    <div class="gh-feed">
+                        {{#foreach tags }}
+                        {{#match slug "~^" "issue-"}}
+                        <div class="gh-card">
+                            <a class="gh-card-link" href="{{url}}">
+                                <div class="gh-card-wrapper">
+                                    <div class="gh-issue-container">
+                                        <div class="gh-issue{{#unless feature_image}} no-front-cover{{/unless}}"
+                                            id="{{slug}}">
+                                            <header class="gh-issue-cover">
+                                                {{> "feature-image"}}
+                                            </header>
+                                            <main class="gh-issue-description">
+                                                <h3><span class="gh-issue-name">{{name}}</span></h3>
+                                                {{#if description}}<em>{{description}}</em>{{/if}}
+                                            </main>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {{/match}}
+                        {{/foreach}}
+                    </div>
+                </main>
+            </div>
+        </section>
+        {{/match}}
+
     </article>
 </main>
 

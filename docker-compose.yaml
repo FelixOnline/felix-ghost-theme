@@ -1,17 +1,23 @@
 services:
 
   ghost:
-    image: ghost
+    image: ghost:6
     restart: always
     ports:
-      - "8080:2368"
+      - "2368:2368"
     environment:
       database__client: mysql
       database__connection__host: db
       database__connection__user: root
       database__connection__password: example
       database__connection__database: ghost
-      url: http://localhost:8080
+      security__staffDeviceVerification: false
+      privacy__useTinfoil: true
+      logging__useLocalTime: true
+      logging__level: debug
+      compress: false
+      imageOptimization__resize: false
+      url: http://localhost:2368
       NODE_ENV: development
     volumes:
       - ghost:/var/lib/ghost/content
@@ -23,14 +29,16 @@ services:
         condition: service_healthy
 
   db:
-    image: mysql:9
+    image: mysql:8.0.42@sha256:4445b2668d41143cb50e471ee207f8822006249b6859b24f7e12479684def5d9
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 20s
-      retries: 10
+      interval: 1s
+      start_period: 30s
+      start_interval: 10s
+      retries: 120
     volumes:
       - db:/var/lib/mysql
 
