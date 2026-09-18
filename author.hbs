@@ -53,7 +53,9 @@
                     </footer>
                 </div>
                 {{#if profile_image}}
-                    <img class="gh-article-image" src="{{img_url profile_image size="s"}}" alt="{{name}}">
+                    <div class="gh-article-image-wrap">
+                        <img class="gh-article-image" src="{{img_url profile_image size="s"}}" alt="{{name}}">
+                    </div>
                 {{/if}}
             </div>
         </section>

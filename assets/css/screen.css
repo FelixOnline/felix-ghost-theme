@@ -2888,13 +2888,23 @@ figcaption b, figcaption strong {
     gap: 24px;
 }
 
-.author-template .gh-article-image {
-    margin-top: 0;
+.author-template .gh-article-image-wrap {
+    position: relative;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
     flex-shrink: 0;
+}
+
+.author-template .gh-article-image {
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
 }
 
 .author-template .gh-article-title {
